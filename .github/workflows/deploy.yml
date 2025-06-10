@@ -28,7 +28,7 @@ jobs:
 
       - name: Push personal website image
         run: |
-          IMAGE_NAME=docker-0.unsee.tech/${{ secrets.DOCKER_USERNAME }}/my-app:latest
+          IMAGE_NAME=docker.io/${{ secrets.DOCKER_USERNAME }}/my-app:latest
           docker tag my-app:latest $IMAGE_NAME
           docker push $IMAGE_NAME
 
@@ -38,7 +38,7 @@ jobs:
 
       - name: Push todo app image
         run: |
-          TODO_IMAGE_NAME=docker-0.unsee.tech/${{ secrets.DOCKER_USERNAME }}/my-todo:latest
+          TODO_IMAGE_NAME=docker.io/${{ secrets.DOCKER_USERNAME }}/my-todo:latest
           docker tag my-todo:latest $TODO_IMAGE_NAME
           docker push $TODO_IMAGE_NAME
 
