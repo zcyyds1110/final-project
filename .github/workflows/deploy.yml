@@ -16,7 +16,8 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v2
 
-      - name: Build Docker image
+      # Build and push personal website
+      - name: Build personal website image
         run: docker build -t my-app:latest .
 
       - name: Log in to Docker Hub
@@ -25,12 +26,23 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Push image to Docker Hub
+      - name: Push personal website image
         run: |
           IMAGE_NAME=docker.io/${{ secrets.DOCKER_USERNAME }}/my-app:latest
           docker tag my-app:latest $IMAGE_NAME
           docker push $IMAGE_NAME
 
+      # Build and push todo app
+      - name: Build todo app image
+        run: docker build -t my-todo:latest ./todo-app
+
+      - name: Push todo app image
+        run: |
+          TODO_IMAGE_NAME=docker.io/${{ secrets.DOCKER_USERNAME }}/my-todo:latest
+          docker tag my-todo:latest $TODO_IMAGE_NAME
+          docker push $TODO_IMAGE_NAME
+
+      # Deploy both applications
       - name: SSH to server and deploy
         uses: appleboy/ssh-action@v0.1.10
         with:
@@ -39,7 +51,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-            docker pull ${{ secrets.DOCKER_USERNAME }}/my-app:latest
-            docker stop my-app || true
-            docker rm my-app || true
-            docker run -d --name my-app -p 80:80 ${{ secrets.DOCKER_USERNAME }}/my-app:latest
+            docker-compose down
+            docker-compose pull
+            docker-compose up -d
