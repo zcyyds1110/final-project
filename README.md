@@ -1,14 +1,19 @@
 # Personal Website and To-Do Application Deployment
 
-This project consists of two main components:
-1. A personal website showcasing my profile
-2. A simple to-do application
+## Student Information
+- **Name**: Zhang Chi  
+- **Student ID**: 20232042  
+- **Profile Image**:  
+  ![Profile Photo](images/20232042.jpg)
 
-## Live Demo
+## Live Applications
 - Personal Website: [http://82.157.250.79:8120](http://82.157.250.79:8120)
 - To-Do Application: [http://82.157.250.79:8121](http://82.157.250.79:8121)
 
-## Components
+## GitHub Repository
+- **Public Repository URL**: [https://github.com/your-username/your-repo-name](https://github.com/your-username/your-repo-name)
+
+## Project Components
 
 ### 1. Personal Website
 - **Files**: `index.html`, `style.css`, `20232042.jpg`
@@ -18,7 +23,6 @@ This project consists of two main components:
   - Profile photo display
   - Personal information section
   - Clean, modern styling
-- **Access**: [http://82.157.250.79:8120](http://82.157.250.79:8120)
 
 ### 2. To-Do Application
 - **Files**: `index.html` (in todo-app), `app.js`
@@ -28,11 +32,9 @@ This project consists of two main components:
   - List all tasks
   - Simple REST API backend
   - Clean user interface
-- **Access**: [http://82.157.250.79:8121](http://82.157.250.79:8121)
 
 ## Deployment Architecture
 
-The system uses Docker containers managed via Docker Compose:
 ```yaml
 version: '3'
 services:
